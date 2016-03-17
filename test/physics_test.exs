@@ -1,6 +1,6 @@
 defmodule PhysicsTest do
   use ExUnit.Case
-  alias Physics.Calcs
+  alias Calcs
   alias Physics.Rocketry
 
 
@@ -29,11 +29,15 @@ defmodule PhysicsTest do
   end
 
   test "converts m to km" do
-    assert Calcs.convert_to_km(1000) == 1
+    assert Calcs.to_km(1000) == 1
   end
 
   test "calculate_earths_velocity" do
     assert  Rocketry.escape_velocity(:earth) == 11.2
+  end
+
+  test "test orbital velocity at 100km" do
+    assert_in_delta Rocketry.orbital_accelaration(100) , 9.51, 0.1
   end
 
 end
